@@ -21,7 +21,9 @@ class PermissionRoleTableSeeder extends Seeder
         $user_permissions = $all_permissions->filter(function ($permission) {
             return str_starts_with($permission->title, 'user_');
         });
+
         Role::findOrFail(1)->permissions()->sync($admin_permissions->pluck('id'));
         Role::findOrFail(2)->permissions()->sync($user_permissions->pluck('id'));
+
     }
 }

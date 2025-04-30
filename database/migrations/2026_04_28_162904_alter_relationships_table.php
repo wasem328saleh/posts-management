@@ -30,6 +30,11 @@ return new class extends Migration
             $table->foreignId('post_id')->references('id')->on('posts')->onDelete('cascade')->onUpdate('cascade');
         });
 
+        Schema::table('reply_comments', function (Blueprint $table) {
+            $table->foreignId('bot_id')->references('id')->on('ai_bots')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('comment_id')->references('id')->on('comments')->onDelete('cascade')->onUpdate('cascade');
+        });
+
     }
 
     /**

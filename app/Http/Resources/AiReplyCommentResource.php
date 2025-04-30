@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CommentResource extends JsonResource
+class AiReplyCommentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +16,9 @@ class CommentResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'image_user'=>url($this->user->image_profile->url),
-            'user_name'=>$this->user->name,
-            'comment'=>$this->comment,
-            'ai_reply'=>$this->whenLoaded('ai_reply', function () {
-                return new AiReplyCommentResource($this->ai_reply);
-            })
+            'image_bot'=>url($this->ai_bot->image_profile->url),
+            'bot_name'=>$this->ai_bot->bot_name,
+            'reply'=>$this->ai_reply,
         ];
     }
 }

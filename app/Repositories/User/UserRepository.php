@@ -200,6 +200,7 @@ class UserRepository implements UserRepositoryInterface
     public function add_post_images($request)
     {
         // TODO: Implement add_post_images() method.
+        abort_if(Gate::denies('user_add_post_images'), Response::HTTP_FORBIDDEN, 'Forbidden');
 
         try {
             DB::beginTransaction();
@@ -232,6 +233,7 @@ class UserRepository implements UserRepositoryInterface
     public function delete_post_image($id,$request)
     {
         // TODO: Implement delete_post_image() method.
+        abort_if(Gate::denies('user_delete_post_image'), Response::HTTP_FORBIDDEN, 'Forbidden');
 
         try {
             DB::beginTransaction();

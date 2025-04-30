@@ -31,5 +31,7 @@ class UserTableSeeder extends Seeder
                 'url'=>'user_profile_default.png'
             ]);
         });
+
+
     }
 }

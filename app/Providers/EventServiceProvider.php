@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Events\AiReplyEvent;
 use App\Events\PostCache;
 use App\Events\PostCreated;
 use App\Jobs\PostCreatedMailSend;
+use App\Listeners\AiReplyListeners;
 use App\Listeners\ClearPostCache;
 use App\Listeners\SendPostCreatedNotification;
 use Illuminate\Auth\Events\Registered;
@@ -24,7 +26,8 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         PostCreated::class=>[SendPostCreatedNotification::class],
-        PostCache::class=>[ClearPostCache::class]
+        PostCache::class=>[ClearPostCache::class],
+        AiReplyEvent::class=>[AiReplyListeners::class]
     ];
 
     /**

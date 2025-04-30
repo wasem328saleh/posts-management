@@ -29,7 +29,7 @@ class PostResource extends JsonResource
                 return $this->comments()->count();
             }),
             'comments'=>$this->whenLoaded('comments', function () {
-                return CommentResource::collection($this->comments()->with('user')->get());
+                return CommentResource::collection($this->comments()->with(['user','ai_reply'])->get());
             })
         ];
     }

@@ -28,6 +28,8 @@ class PermissionsTableSeeder extends Seeder
             'user_update_my_post',
             'user_delete_my_post',
             'user_get_user_profile',
+            'user_add_post_images',
+            'user_delete_post_image',
         ];
 
         foreach ($permissions as $permission) {

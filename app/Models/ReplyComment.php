@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use App\Events\AiReplyEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class ReplyComment extends Model
 {
     use HasFactory;
-    protected $table = 'comments';
+    protected $table = 'reply_comments';
 
     protected $guarded = [];
 
@@ -37,26 +36,8 @@ class Comment extends Model
         return parent::getAttribute($key);
     }
 
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function ai_bot(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function post(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(Post::class, 'post_id');
-    }
-
-    public function ai_reply()
-    {
-        return $this->hasOne(ReplyComment::class, 'comment_id');
-    }
-
-    protected static function booted()
-    {
-        parent::booted();
-        static::created(function ($comment) {
-            event(new AiReplyEvent($comment));
-        });
+        return $this->belongsTo(AiBot::class, 'bot_id');
     }
 }

@@ -81,7 +81,8 @@ class ProjectRun extends Command
             'MAIL_PASSWORD' => 'hplistfkmjslogwm',
             'MAIL_ENCRYPTION' => 'tls',
             'MAIL_FROM_ADDRESS' => "levanttask@gmail.com",
-            'MAIL_FROM_NAME'=>'"${APP_NAME}"'
+            'MAIL_FROM_NAME'=>'"${APP_NAME}"',
+            'GEMINI_AI_KEY'=>'AIzaSyAD__zfS8mNi-NDQ4Xd5t4C_odBpXbAyDg'
         ];
         $envFile = File::get($envFilePath);
 
